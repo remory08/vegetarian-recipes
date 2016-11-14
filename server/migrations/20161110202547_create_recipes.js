@@ -1,7 +1,6 @@
 
 exports.up = function(knex, Promise) {
-  knex.schema.dropTableIfExists('recipes', 'ingredients');
-  return knex.schema.createTable('recipes', function(table){
+  return knex.schema.createTableIfNotExists('recipes', function(table){
     table.increments('id');
     table.string('title');
     table.text('description');
