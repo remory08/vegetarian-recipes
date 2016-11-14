@@ -15,8 +15,7 @@ exports.up = function(knex, Promise) {
      table.increments('id');
      table.string('title');
      table.text('description');
-     table.integer('ingredient_id');
-     table.integer('ingredient_id').references('ingredients.id');
+     table.integer('ingredient_id').references('ingredients.id').onDelete('CASCADE');
      table.text('steps');
      table.integer('prep_time');
      table.integer('cook_time');
@@ -30,12 +29,10 @@ exports.up = function(knex, Promise) {
      table.integer('age');
      table.integer('weight');
      table.integer('protein_needed');
-   }).createTableIfNotExists('user-recipes', fucntion(table){
+   }).createTableIfNotExists('user-recipes', function(table){
      table.increments('id');
-     table.integer('recipe_id');
-     table.integaer('recipe_id').references('recipes.id');
-     table.integer('user_id');
-     table.integaer('user_id').references('users.id');
+     table.integer('recipe_id').references('recipes.id').onDelete('CASCADE');
+     table.integer('user_id').references('users.id').onDelete('CASCADE');
    })
  ])
 };
